@@ -15,6 +15,7 @@ use frontend\models\Profile;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use common\models\ValueHelpers;
 
 /**
  * User model
@@ -33,8 +34,10 @@ use yii\helpers\Html;
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface {
-
-    const STATUS_ACTIVE = 1;
+    //Rino: Da RIMUOVERE - dopo aver verificato che non ci sono
+    //più riferimenti
+    //const STATUS_ACTIVE = 1;
+    //sostituito con 
 
     public static function tableName() {
         return 'user';
@@ -62,7 +65,8 @@ class User extends ActiveRecord implements IdentityInterface {
     public function rules() {
         return [
 
-            ['status_id', 'default', 'value' => self::STATUS_ACTIVE],
+            //['status_id', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status_id', 'default', 'value' => ValueHelpers::getStatusId('Active')],
             [['status_id'], 'in', 'range' => array_keys($this->getStatusList())],
             ['role_id', 'default', 'value' => 1],
             [['role_id'], 'in', 'range' => array_keys($this->getRoleList())],
@@ -101,7 +105,7 @@ class User extends ActiveRecord implements IdentityInterface {
      * @findIdentity
      */
     public static function findIdentity($id) {
-        return static::findOne(['id' => $id, 'status_id' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'status_id' => ValueHelpers::getStatusId('Active')]);
     }
 
     /**
@@ -121,7 +125,7 @@ class User extends ActiveRecord implements IdentityInterface {
      * @return static|null
      */
     public static function findByUsername($username) {
-        return static::findOne(['username' => $username, 'status_id' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username, 'status_id' => ValueHelpers::getStatusId('Active')]);
     }
 
     /**
@@ -144,7 +148,7 @@ class User extends ActiveRecord implements IdentityInterface {
 
         return static::findOne([
                     'password_reset_token' => $token,
-                    'status_id' => self::STATUS_ACTIVE,
+                    'status_id' => ValueHelpers::getStatusId('Active'),
         ]);
     }
 
