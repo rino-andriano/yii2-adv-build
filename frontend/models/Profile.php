@@ -10,7 +10,6 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\db\Expression;
 
-
 /**
  * This is the model class for table "profile".
  *
@@ -48,6 +47,17 @@ class Profile extends \yii\db\ActiveRecord {
                 'value' => new Expression('NOW()'),
             ],
         ];
+    }
+
+    /**
+     * Change Date's format to Y-m-d - before validate birthdate
+     */
+    public function beforeValidate() {
+        if ($this->birthdate != null) {
+            $new_date_format = date('Y-m-d', strtotime($this->birthdate));
+            $this->birthdate = $new_date_format;
+        }
+        return parent::beforeValidate();
     }
 
     /**
