@@ -1,42 +1,66 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\PermissionHelpers;
 
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Profile */
+/**
+ * @var yii\web\View $this
+ * @var frontend\models\Profile $model
+ */
+$this->title = $model->user->username;
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Profiles'), 'url' => ['index']];
+$show_this_nav = PermissionHelpers::requireMinimumRole('SuperUser');
+
+$this->params['breadcrumbs'][] = ['label' => 'Profiles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="profile-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Profile:  <?= Html::encode($this->title) ?></h1>
+
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+
+        <?php
+        if (!Yii::$app->user->isGuest && $show_this_nav) {
+            echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+        }
+
+        ?>
+
+
+        <?php
+        if (!Yii::$app->user->isGuest && $show_this_nav) {
+            echo Html::a('Delete', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]);
+        }
+
+        ?>
+
     </p>
 
-    <?= DetailView::widget([
+
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'user_id',
+            ['attribute' => 'userLink', 'format' => 'raw'],
             'first_name',
             'last_name',
             'birthdate',
-            'gender_id',
+            'gender.gender_name',
             'created_at',
             'updated_at',
+            'id',
         ],
-    ]) ?>
+    ])
+
+    ?>
 
 </div>
