@@ -4,7 +4,6 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Profile;
-use frontend\models\search\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,6 +25,10 @@ class ProfileController extends Controller {
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        //require an 'Active' role
+                        'matchCallback' => function ($rule, $action) {
+                            return PermissionHelpers::requireStatus('Active');
+                        }
                     ],
                 ],
             ],
@@ -96,6 +99,8 @@ class ProfileController extends Controller {
      * @return mixed
      */
     public function actionUpdate($id) {
+        PermissionHelpers::requireUpgradeTo('Paid');
+
         if ($model = Profile::find()->where(['user_id' =>
                     Yii::$app->user->identity->id])->one()) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
