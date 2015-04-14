@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * index di Yii2 build
+ * per usarla bisogna configurare Facebook
+ */
 use \yii\bootstrap\Modal;
 use kartik\social\FacebookPlugin;
 use \yii\bootstrap\Collapse;

@@ -19,7 +19,7 @@ class ProfileSearch extends Profile
     {
         return [
             [['id', 'user_id', 'gender_id'], 'integer'],
-            [['first_name', 'last_name', 'birthday', 'created_at', 'updated_at'], 'safe'],
+            [['first_name', 'last_name', 'birthdate', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -58,7 +58,7 @@ class ProfileSearch extends Profile
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'birthday' => $this->birthday,
+            'birthdate' => $this->birthdate,
             'gender_id' => $this->gender_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

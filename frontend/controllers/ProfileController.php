@@ -60,7 +60,7 @@ class ProfileController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id) {
+    public function actionView() {
         if ($already_exists = RecordHelpers::userHas('profile')) {
             return $this->render('view', [
                         'model' => $this->findModel($already_exists),
@@ -77,7 +77,7 @@ class ProfileController extends Controller {
      */
     public function actionCreate() {
         $model = new Profile;
-        $model->user_id = \Yii::$app->user->identity->id;
+        $model->user_id = Yii::$app->user->identity->id;
 
         if ($already_exists = RecordHelpers::userHas('profile')) {
             return $this->render('view', [
@@ -99,7 +99,11 @@ class ProfileController extends Controller {
      * @return mixed
      */
     public function actionUpdate($id) {
-        PermissionHelpers::requireUpgradeTo('Paid');
+        /*
+         * Demo di RequireUpgradeTo (UserType)
+         * se decommentato consente l'update del profilo solo agli utenti 'paid'
+         */
+        // PermissionHelpers::requireUpgradeTo('Paid');
 
         if ($model = Profile::find()->where(['user_id' =>
                     Yii::$app->user->identity->id])->one()) {
