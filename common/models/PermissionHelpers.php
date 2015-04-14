@@ -3,7 +3,7 @@
 namespace common\models;
 
 use common\models\ValueHelpers;
-use yii;
+use Yii;
 use yii\web\Controller;
 use yii\helpers\Url;
 

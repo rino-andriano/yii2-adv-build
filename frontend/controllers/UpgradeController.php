@@ -1,6 +1,7 @@
 <?php
 
 namespace frontend\controllers;
+use Yii;
 
 class UpgradeController extends \yii\web\Controller {
 

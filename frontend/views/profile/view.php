@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user.username',
             'first_name',
             'last_name',
-            'birthday',
+            'birthdate',
             'gender.gender_name',
             'created_at',
             'updated_at',
