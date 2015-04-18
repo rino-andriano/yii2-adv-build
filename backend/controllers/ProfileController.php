@@ -1,7 +1,7 @@
 <?php namespace backend\controllers;
 
 use Yii;
-use frontend\models\Profile;
+use common\models\Profile;
 use backend\models\search\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

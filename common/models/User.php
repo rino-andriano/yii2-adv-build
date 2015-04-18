@@ -11,7 +11,7 @@ use yii\helpers\Security;
 use backend\models\Role;
 use backend\models\Status;
 use backend\models\UserType;
-use frontend\models\Profile;
+use common\models\Profile;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;

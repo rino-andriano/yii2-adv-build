@@ -4,7 +4,7 @@ namespace backend\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Profile;
+use common\models\Profile;
  
 class ProfileSearch extends Profile
 {

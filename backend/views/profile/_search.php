@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use frontend\models\Profile;
+use common\models\Profile;
 /**
  * @var yii\web\View $this
  * @var backend\models\search\ProfileSearch $model
