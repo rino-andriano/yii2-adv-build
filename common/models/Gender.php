@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $gender_name
  *
- * @property Profile[] $profiles
+ * @property UserProfile[] $profiles
  */
 class Gender extends \yii\db\ActiveRecord
 {
@@ -49,6 +49,6 @@ class Gender extends \yii\db\ActiveRecord
      */
     public function getProfiles()
     {
-        return $this->hasMany(Profile::className(), ['gender_id' => 'id']);
+        return $this->hasMany(UserProfile::className(), ['gender_id' => 'id']);
     }
 }

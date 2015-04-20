@@ -22,7 +22,7 @@ $is_admin = PermissionHelpers::requireMinimumRole('Admin');
  
         <p class="lead">
         
-        Now you can manage users, roles, and more with 
+        Now you can manage users, UserRoles, and more with 
         our easy tools.
         
         </p>
@@ -52,7 +52,7 @@ echo Html::a('Manage Users', ['user/index'], ['class' => 'btn btn-lg btn-success
  
                 <p>
                 
-This is the place to manage users.  You can edit status and roles from here.  
+This is the place to manage users.  You can edit UserStatus and UserRoles from here.  
 The UI is easy to use and intuitive, just click the link below to get started.
                 
                 </p>
@@ -78,8 +78,8 @@ The UI is easy to use and intuitive, just click the link below to get started.
  
                 <p>
                 
-             	This is where you manage Roles.  You can decide who is admin and who is not.  You can
-add a new role if you like, just click the link below to get started.
+             	This is where you manage UserRoles.  You can decide who is admin and who is not.  You can
+add a new UserRole if you like, just click the link below to get started.
                 
                 </p>
  
@@ -89,7 +89,7 @@ add a new role if you like, just click the link below to get started.
                         
      if (!Yii::$app->user->isGuest && $is_admin) {
                                     
-        echo Html::a('Manage Roles', ['role/index'], ['class' => 'btn btn-default']);
+        echo Html::a('Manage UserRoles', ['user-role/index'], ['class' => 'btn btn-default']);
                                 
      } 
                         
@@ -104,8 +104,8 @@ add a new role if you like, just click the link below to get started.
  
                 <p>
                 
-                Need to review Profiles?  This is the place to get it done.  
-These are easy to manage via UI. Just click the link below to manage profiles.
+                Need to review UserProfiles?  This is the place to get it done.  
+These are easy to manage via UI. Just click the link below to manage UserProfiles.
                 
                 </p>
  
@@ -115,7 +115,7 @@ These are easy to manage via UI. Just click the link below to manage profiles.
                         
      if (!Yii::$app->user->isGuest && $is_admin) {
                         
-         echo Html::a('Manage Profiles', ['profile/index'], ['class' => 'btn btn-default']);
+         echo Html::a('Manage UserProfiles', ['user-profile/index'], ['class' => 'btn btn-default']);
                                 
      } 
                         
@@ -159,8 +159,8 @@ These are easy to manage via UI. Just click the link below to manage profiles.
  
                 <p>
                 
-                This is where you manage Statuses.  You can add or delete.  
-                You can add a new status if you like, just click the link 
+                This is where you manage UserStatuses.  You can add or delete.  
+                You can add a new UserStatus if you like, just click the link 
                 below to get started.
                 
                 </p>
@@ -171,7 +171,7 @@ These are easy to manage via UI. Just click the link below to manage profiles.
                         
    if (!Yii::$app->user->isGuest && $is_admin) {
                                         
-      echo Html::a('Manage Statuses', ['status/index'], ['class' => 'btn btn-default']);
+      echo Html::a('Manage UserStatuses', ['user-status/index'], ['class' => 'btn btn-default']);
                                     
     } 
                         
@@ -186,9 +186,9 @@ These are easy to manage via UI. Just click the link below to manage profiles.
  
                 <p>
                 
-                Need to review Profiles?  This is the place to get it done.  
+                Need to review UserProfiles?  This is the place to get it done.  
                 These are easy to manage via UI.  Just click the link below 
-                to manage profiles.
+                to manage UserProfiles.
                 
                 </p>
  
@@ -198,7 +198,7 @@ These are easy to manage via UI. Just click the link below to manage profiles.
                         
   if (!Yii::$app->user->isGuest && $is_admin) {
                                         
-     echo Html::a('Manage Profiles', ['profile/index'], ['class' => 'btn btn-default']);
+     echo Html::a('Manage UserProfiles', ['user-profile/index'], ['class' => 'btn btn-default']);
                                     
   } 
                         

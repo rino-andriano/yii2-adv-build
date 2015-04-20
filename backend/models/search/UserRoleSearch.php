@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models\search;
+namespace backend\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\UserProfile;
+use backend\models\UserRole;
 
 /**
- * UserProfileSearch represents the model behind the search form about `common\models\UserProfile;`.
+ * UserRoleSearch represents the model behind the search form about `backend\models\Role`.
  */
-class UserProfileSearch extends UserProfile
+class UserRoleSearch extends UserRole
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class UserProfileSearch extends UserProfile
     public function rules()
     {
         return [
-            [['id', 'user_id', 'gender_id'], 'integer'],
-            [['first_name', 'last_name', 'birthdate', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'role_value'], 'integer'],
+            [['role_name'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class UserProfileSearch extends UserProfile
      */
     public function search($params)
     {
-        $query = UserProfile::find();
+        $query = UserRole::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,15 +57,10 @@ class UserProfileSearch extends UserProfile
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'birthdate' => $this->birthdate,
-            'gender_id' => $this->gender_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'role_value' => $this->role_value,
         ]);
 
-        $query->andFilterWhere(['like', 'first_name', $this->first_name])
-            ->andFilterWhere(['like', 'last_name', $this->last_name]);
+        $query->andFilterWhere(['like', 'role_name', $this->role_name]);
 
         return $dataProvider;
     }

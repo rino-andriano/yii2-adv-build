@@ -8,10 +8,10 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 use yii\helpers\Security;
-use backend\models\Role;
-use backend\models\Status;
+use backend\models\UserRole;
+use backend\models\UserStatus;
 use backend\models\UserType;
-use common\models\Profile;
+use common\models\UserProfile;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -40,7 +40,7 @@ class User extends ActiveRecord implements IdentityInterface {
     //sostituito con 
 
     public static function tableName() {
-        return 'user';
+        return '{{%user}}';
     }
 
     /**
@@ -231,39 +231,39 @@ class User extends ActiveRecord implements IdentityInterface {
     }
 
     /**
-     * get role relationship
+     * get UserRole relationship
      *
      */
     public function getRole() {
-        return $this->hasOne(Role::className(), ['id' => 'role_id']);
+        return $this->hasOne(UserRole::className(), ['id' => 'role_id']);
     }
 
     /**
-     * get role name
+     * get UserRole name
      *
      */
     public function getRoleName() {
-        return $this->role ? $this->role->role_name : '- no role -';
+        return $this->role ? $this->role->role_name : '- no UserRole -';
     }
 
     /**
-     * get list of roles for dropdown
+     * get list of UserRoles for dropdown
      */
     public static function getRoleList() {
-        $droptions = Role::find()->asArray()->all();
+        $droptions = UserRole::find()->asArray()->all();
         return ArrayHelper::map($droptions, 'id', 'role_name');
     }
 
     /**
-     * get status relation
+     * get UserStatus relation
      *
      */
     public function getStatus() {
-        return $this->hasOne(Status::className(), ['id' => 'status_id']);
+        return $this->hasOne(UserStatus::className(), ['id' => 'status_id']);
     }
 
     /**
-     * * get status name
+     * * get UserStatus name
      *
      */
     public function getStatusName() {
@@ -274,7 +274,7 @@ class User extends ActiveRecord implements IdentityInterface {
      * get list of statuses for dropdown
      */
     public static function getStatusList() {
-        $droptions = Status::find()->asArray()->all();
+        $droptions = UserStatus::find()->asArray()->all();
         return ArrayHelper::map($droptions, 'id', 'status_name');
     }
 
@@ -316,7 +316,7 @@ class User extends ActiveRecord implements IdentityInterface {
      * 
      */
     public function getProfile() {
-        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+        return $this->hasOne(UserProfile::className(), ['user_id' => 'id']);
     }
 
     /**
@@ -332,7 +332,7 @@ class User extends ActiveRecord implements IdentityInterface {
      * 
      */
     public function getProfileLink() {
-        $url = Url::to(['profile/view', 'id' => $this->profileId]);
+        $url = Url::to(['user-profile/view', 'id' => $this->profileId]);
         $options = [];
         return Html::a($this->profile ? 'profile' : 'none', $url, $options);
     }

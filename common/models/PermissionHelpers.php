@@ -17,12 +17,12 @@ class PermissionHelpers {
         }
     }
 
-    public static function requireStatus($status_name) {
+    public static function requireUserStatus($status_name) {
 
         return ValueHelpers::statusMatch($status_name) ? true : false;
     }
 
-    public static function requireRole($role_name) {
+    public static function requireUserRole($role_name) {
 
         return ValueHelpers::roleMatch($role_name) ? true : false;
     }

@@ -28,7 +28,7 @@ class UserTypeController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                        return PermissionHelpers::requireMinimumRole('Admin') && PermissionHelpers::requireStatus('Active');
+                        return PermissionHelpers::requireMinimumRole('Admin') && PermissionHelpers::requireUserStatus('Active');
                     }
                     ],
                     [
@@ -36,7 +36,7 @@ class UserTypeController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                        return PermissionHelpers::requireMinimumRole('SuperUser') && PermissionHelpers::requireStatus('Active');
+                        return PermissionHelpers::requireMinimumRole('SuperUser') && PermissionHelpers::requireUserStatus('Active');
                     }
                     ],
                 ],

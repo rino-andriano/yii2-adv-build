@@ -3,8 +3,8 @@
 namespace common\models;
 
 use Yii;
-use backend\models\Role;
-use backend\models\Status;
+use backend\models\UserRole;
+use backend\models\UserStatus;
 use backend\models\UserType;
 use common\models\User;
 
@@ -37,7 +37,7 @@ class ValueHelpers {
 
     public static function getRoleValue($role_name) {
 
-        $role = Role::find('role_value')
+        $role = UserRole::find('role_value')
                 ->where(['role_name' => $role_name])
                 ->one();
 
@@ -46,7 +46,7 @@ class ValueHelpers {
 
     public static function isRoleNameValid($role_name) {
 
-        $role = Role::find('role_name')
+        $role = UserRole::find('role_name')
                 ->where(['role_name' => $role_name])
                 ->one();
 
@@ -62,7 +62,7 @@ class ValueHelpers {
 
     public static function getStatusId($status_name) {
 
-        $status = Status::find('id')
+        $status = UserStatus::find('id')
                 ->where(['status_name' => $status_name])
                 ->one();
 

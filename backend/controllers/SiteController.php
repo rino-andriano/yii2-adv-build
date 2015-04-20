@@ -32,7 +32,7 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                        return PermissionHelpers::requireMinimumRole('Admin') && PermissionHelpers::requireStatus('Active');
+                        return PermissionHelpers::requireMinimumRole('Admin') && PermissionHelpers::requireUserStatus('Active');
                     }
                     ],
                     [

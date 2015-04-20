@@ -101,20 +101,20 @@ public function search($params)
             ],
             
             'profileLink' => [
-                'asc' => ['profile.id' => SORT_ASC],
-                'desc' => ['profile.id' => SORT_DESC],
+                'asc' => ['user_profile.id' => SORT_ASC],
+                'desc' => ['user_profile.id' => SORT_DESC],
                 'label' => 'Profile'
             ],
            
                     
             'roleName' => [
-                'asc' => ['role.role_name' => SORT_ASC],
-                'desc' => ['role.role_name' => SORT_DESC],
+                'asc' => ['user_role.role_name' => SORT_ASC],
+                'desc' => ['user_role.role_name' => SORT_DESC],
                 'label' => 'Role'
             ],
              'statusName' => [
-                'asc' => ['status.status_name' => SORT_ASC],
-                'desc' => ['status.status_name' => SORT_DESC],
+                'asc' => ['user_status.status_name' => SORT_ASC],
+                'desc' => ['user_status.status_name' => SORT_DESC],
                 'label' => 'Status'
             ],
             'userTypeName' => [
@@ -158,19 +158,19 @@ public function search($params)
         $this->addSearchParameter($query, 'updated_at');
         
         
-// filter by role
+// filter by UserRole
     
 $query->joinWith(['role' => function ($q) {
  
-$q->andFilterWhere(['=', 'role.role_name', $this->roleName]);
+$q->andFilterWhere(['=', 'user_role.role_name', $this->roleName]);
  
     }])
     
-// filter by status
+// filter by UserStatus
  
       ->joinWith(['status' => function ($q) {
  
-$q->andFilterWhere(['=', 'status.status_name', $this->statusName]);
+$q->andFilterWhere(['=', 'user_status.status_name', $this->statusName]);
  
     }])
     
@@ -182,11 +182,11 @@ $q->andFilterWhere(['=', 'user_type.user_type_name', $this->userTypeName]);
  
     }])
     
-    // filter by profile
+    // filter by UserProfile
     
        ->joinWith(['profile' => function ($q) {
        
-$q->andFilterWhere(['=', 'profile.id', $this->profileId]);
+$q->andFilterWhere(['=', 'user_profile.id', $this->profileId]);
 
 }]);
     

@@ -77,13 +77,13 @@ if (!Yii::$app->user->isGuest && $is_admin) {
 
     $menuItems[] = ['label' => 'Users', 'url' => ['user/index']];
 
-    $menuItems[] = ['label' => 'Profiles', 'url' => ['profile/index']];
+    $menuItems[] = ['label' => 'Profiles', 'url' => ['user-profile/index']];
 
-    $menuItems[] = ['label' => 'Roles', 'url' => ['role/index']];
+    $menuItems[] = ['label' => 'Roles', 'url' => ['user-role/index']];
 
     $menuItems[] = ['label' => 'User Types', 'url' => ['user-type/index']];
 
-    $menuItems[] = ['label' => 'Statuses', 'url' => ['status/index']];
+    $menuItems[] = ['label' => 'Statuses', 'url' => ['user-status/index']];
 }
 
 if (Yii::$app->user->isGuest) {
